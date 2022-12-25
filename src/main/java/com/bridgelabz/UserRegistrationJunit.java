@@ -1,51 +1,42 @@
 package com.bridgelabz;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class UserRegistrationJunit {
-    private static final String FIRST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";;
-    private static final String LAST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
-    private static final String EMAIL_ID_PATTERN =  "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-    private static final String MOBILE_NUMBER_PATTERN =  "^[0-9]{2} [0-9]{10}$";//"^([0-9]{2}\\s)?[6789]{1}[0-9]{9}";
-    private static final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$";
+    private Pattern pattern;
+    private Matcher matcher;
 
-
-    public boolean validateFirstName(String firstName)
-    {
-        if(firstName.matches(FIRST_NAME_PATTERN))
-            return true;
-        else
-            return false;
+    public boolean isFirstNameValid(String firstName){
+        String regex = "[A-Z][a-z]{2,}";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(firstName);
+        return matcher.matches();
+    }
+    public boolean isLastNameValid(String lastName) {
+        String regex = "[A-Z][a-z]{2,}";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(lastName);
+        return matcher.matches();
+    }
+    public boolean isEmailValid(String email) {
+        //String regex = "[a-z0-9.]+@[a-z]+.[a-z]{2,3}(.[a-z]{2,})*";
+        String regex = "^[a-zA-Z0-9]+([._+-]*[0-9A-Za-z]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-z]{2,4})?$";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+    public boolean isMobileNumberValid(String mobilenumber) {
+        String regex = "^[0-9]{2} [0-9]{10}$";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(mobilenumber);
+        return matcher.matches();
+    }
+    public boolean isPasswordValid(String password){
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=[^@#$%^&*+=]*[@#$%^&*+=][^@#$%^&*+=]*$).{8,}$";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 
-    public boolean validateLastName(String lastName)
-    {
-        if(lastName.matches(LAST_NAME_PATTERN))
-            return true;
-        else
-            return false;
-    }
-
-    public boolean validateEmailId(String emailId)
-    {
-        if(emailId.matches(EMAIL_ID_PATTERN))
-            return true;
-        else
-            return false;
-    }
-
-    public boolean validateMobileNumber(String mobileNumber)
-    {
-        if(mobileNumber.matches(MOBILE_NUMBER_PATTERN))
-            return true;
-        else
-            return false;
-    }
-
-    public boolean validatePassword(String password)
-    {
-        if(password.matches(PASSWORD_PATTERN))
-            return true;
-        else
-            return false;
-    }
 }
-

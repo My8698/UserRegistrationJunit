@@ -39,8 +39,9 @@ public class MultipleEmailTest {
     }
     @Test
     public void testMultipleEmailsTest() {
-        assertEquals("Email", Boolean.parseBoolean(expectedResult), multipleTest.validateEmailId(inputEmailId));
+        assertEquals("Email", Boolean.parseBoolean(expectedResult), multipleTest.isEmailValid(inputEmailId));
         System.out.println(inputEmailId);
         System.out.println(Boolean.parseBoolean(expectedResult));
     }
 }
+
