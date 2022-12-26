@@ -1,46 +1,152 @@
 package com.bridgelabz;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class UserRegistrationTest {
-    UserRegistrationJunit userRegistration = new UserRegistrationJunit();
+
+    static UserRegistrationJunit userRegistration = new UserRegistrationJunit();
+
+    @BeforeClass
+    public  static void setUp() {
+        userRegistration = new UserRegistrationJunit();
+    }
     @Test
-    public void givenFirstName_WhenProperShouldReturnHappy() {
-        assertEquals("Proper First Name", true , userRegistration.isFirstNameValid("Madhuri"));
+    public void testUserFirstName_whenValid_ShouldReturnSuccess(){
+        try {
+            boolean result = userRegistration.isFirstNameValid.validate("Madhu");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserFirstName_whenInValid_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isLastNameValid.validate("madhu");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserFirstName_whenNull_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isFirstNameValid.validate(null);
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserLastName_whenValid_ShouldReturnSucess(){
+        try {
+            boolean result = userRegistration.isLastNameValid.validate("Tayade");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserLastName_whenInValid_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isLastNameValid.validate("tayade");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserLastName_whenNull_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isLastNameValid.validate(null);
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void givenFirstName_WhenImProperShouldReturnSad() {
-        assertEquals("Improper Name", false, userRegistration.isFirstNameValid("madhuri"));
+    public void testUserEmailID_whenValid_ShouldReturnSucess(){
+        try {
+            boolean result = userRegistration.isEmailValid.validate("devraajmadhuri@gmail.com");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
     }
-
     @Test
-    public void givenLastName_WhenProper_ShouldReturnHappy_ElseSad() {
-
-        assertEquals("Proper Last Name", true , userRegistration.isLastNameValid("Tayade"));
-        assertEquals("Improper Last Name", false, userRegistration.isLastNameValid("tayade"));
-
+    public void testUserEmailID_whenInValid_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isEmailValid.validate("13@gmail");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
     }
-
     @Test
-    public void givenEmailId_WhenProper_ShouldReturnHappy_ElseSad() {
-
-        assertEquals("Proper Email ID", true , userRegistration.isEmailValid("devraajmadhuri@gmail.com"));
-        assertEquals("Improper Email ID", false, userRegistration.isEmailValid("@gmail.com"));
-
+    public void testUserEmailID_whenNull_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isEmailValid.validate(null);
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
     }
-
     @Test
-    public void givenMobileNumber_WhenProper_ShouldReturnHappy_ElseSad() {
-
-        assertEquals("Proper Mobile Number", true , userRegistration.isMobileNumberValid("91 7787564355"));
-        assertEquals("Improper Mobile Number", false, userRegistration.isMobileNumberValid("91 714453"));
+    public void testUserMobileNumber_whenValid_ShouldReturnSucess(){
+        try {
+            boolean result = userRegistration.isMobileNumberValid.validate("91 9989492299");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
     }
-
     @Test
-    public void givenPassword_WhenProper_ShouldReturnHappy_ElseSad() {
-
-        assertEquals("Proper Password", true , userRegistration.isPasswordValid("Oggyn13@"));
-        assertEquals("Improper Password", false, userRegistration.isPasswordValid("google"));
+    public void testUserMobileNumber_whenInValid_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isMobileNumberValid.validate("181881");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserMobileNumber_whenNull_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isMobileNumberValid.validate(null);
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserPassword_whenValid_ShouldReturnSucess(){
+        try {
+            boolean result = userRegistration.isPasswordValid.validate("M@dhuri3");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserPassword_whenInValid_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isPasswordValid.validate("madhuri");
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
+    }
+    @Test
+    public void testUserPassword_whenNull_ShouldReturnException(){
+        try {
+            boolean result = userRegistration.isPasswordValid.validate(null);
+            Assert.assertTrue(result);
+        }catch (InvalidUserInputException e){
+            System.out.println(e);
+        }
     }
 }
